@@ -15,7 +15,7 @@ export default function SearchBox() {
         />
       </svg>
       <input
-        className="searchBox"
+        className="searchBox focused"
         type="text"
         aria-label="Search"
         placeholder="Search places..."
