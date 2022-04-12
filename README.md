@@ -1,7 +1,5 @@
 # Weather App
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-Weather App with responsive design and dark mode support.
+This project has responsive design and dark mode support.
 
 📌 <a href='https://todo-senaoz.vercel.app/'>Demo</a>
 
