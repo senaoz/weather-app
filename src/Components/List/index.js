@@ -1,66 +1,38 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
+import LocContext from "../../Context/LocationProvider";
 
 export default function List() {
+  const { loading, data, hourly, loc, city, country } = useContext(LocContext);
   var ourDate = new Date();
   var Days = [
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
   ];
-
-  const [loc, setLoc] = useState("lat=41.0868&lon=29.0459");
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [hourly, setHourly] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        setTimeout(() => {
-          setLoc(
-            "lat=" +
-              position.coords.latitude +
-              "&lon=" +
-              position.coords.longitude
-          );
-          setLoading(false);
-        }, 1000);
-      });
-
-      await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?${loc}&exclude=current,minutely,alerts&appid=${process.env.REACT_APP_API_OPENWEATHERMAP}&units=metric&lang=en`
-      )
-        .then((res) => res.json())
-        .then((result) => {
-          setData(result.daily);
-          setHourly(result.hourly.slice(0, 7));
-        });
-    };
-    fetchData();
-  }, [loc]);
   return (
     <>
-      <h1 className="mb-0 mt-16 text-center">Hello</h1>
+      <h1 className="mb-2 mt-14 text-center">
+        {city ? `${city}, ${country}` : "Current Location"}
+      </h1>
 
-      <div className="flex rounded-xl px-6 justify-center">
+      <div className="flex rounded-xl px-6 mb-14 text-xl justify-center">
         {Days[ourDate.getDay()] +
           " | " +
           (loading ? "Loading.." : Math.round(hourly[0].temp) + "°")}
       </div>
 
-      <section className="grid my-4 grid-cols-7 border rounded-xl p-4">
+      <section className="grid my-4 grid-cols-7 border rounded-xl p-4 shadow-md">
         {hourly.map((hours, index) => (
           <div key={index + 1} className="grid text-center">
             <span>{index == 0 ? "Now" : ourDate.getHours() + index}</span>
@@ -68,7 +40,7 @@ export default function List() {
           </div>
         ))}
       </section>
-      <section className="grid my-4 grid-cols-1 md:grid-cols-2 border rounded-xl px-4 md:p-0 md:border-none md:gap-4">
+      <section className="grid my-4 grid-cols-1 md:grid-cols-2 border rounded-xl px-4 md:p-0 md:border-none md:gap-4 shadow-md">
         <div className="box text-opacity-50 text-sm md:hidden">
           8-DAY FORECAST
         </div>
