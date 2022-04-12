@@ -1,13 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    @apply prose max-w-none dark:prose-invert dark:bg-zinc-900
+    p-6 md:p-12
+    max-w-4xl mx-auto lg:max-w-5xl lg:gap-20;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.searchBox {
+    @apply focus:ring-2 focus:ring-blue-500 focus:outline-none
+    appearance-none w-full  text-slate-900
+    placeholder-slate-400 rounded-md py-2 pl-10 shadow-sm
+    bg-zinc-200 dark:bg-white;
 }
