@@ -2,7 +2,7 @@ import { useContext } from "react";
 import LocContext from "../../Context/LocationProvider";
 
 export default function List() {
-  const { loading, data, hourly, loc, city, country } = useContext(LocContext);
+  const { loading, data, hourly, city, country } = useContext(LocContext);
   var ourDate = new Date();
   var Days = [
     "Sunday",
