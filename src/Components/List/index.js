@@ -35,7 +35,9 @@ export default function List() {
       <section className="grid my-4 grid-cols-7 border rounded-xl p-4 shadow-md">
         {hourly.map((hours, index) => (
           <div key={index + 1} className="grid text-center">
-            <span>{index == 0 ? "Now" : ourDate.getHours() + index}</span>
+            <span className="font-bold">
+              {index == 0 ? "Now" : ourDate.getHours() + index}
+            </span>
             <span>{loading ? "..." : Math.round(hours.temp) + "°"}</span>
           </div>
         ))}
