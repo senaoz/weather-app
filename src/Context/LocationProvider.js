@@ -21,7 +21,7 @@ export const LocProvider = ({ children }) => {
               position.coords.longitude
           );
           setLoading(false);
-        }, 1000);
+        }, 5000);
       });
 
       await fetch(
