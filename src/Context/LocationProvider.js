@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 const LocContext = createContext();
 
 export const LocProvider = ({ children }) => {
-  const [loc, setLoc] = useState("lat=41.0868&lon=29.0459");
+  const [loc, setLoc] = useState("lat=41.0868&lon=29.0459"); // Istanbul is default location
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [hourly, setHourly] = useState([]);
@@ -11,31 +11,22 @@ export const LocProvider = ({ children }) => {
   const [country, setCountry] = useState();
 
   useEffect(() => {
-    const fetchData = async () => {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        setTimeout(() => {
-          setLoc(
-            "lat=" +
-              position.coords.latitude +
-              "&lon=" +
-              position.coords.longitude
-          );
-          setLoading(false);
-        }, 1000);
-      });
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setLoc(
+        "lat=" + position.coords.latitude + "&lon=" + position.coords.longitude
+      );
+    });
 
-      await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?${loc}&exclude=current,minutely,alerts&appid=${process.env.REACT_APP_API_OPENWEATHERMAP}&units=metric&lang=en`
-      )
-        .then((res) => res.json())
-        .then((result) => {
-          setData(result.daily);
-          setHourly(result.hourly.slice(0, 7));
-        });
-    };
-
-    fetchData();
-  }, [loc]);
+    fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?${loc}&exclude=current,minutely,alerts&appid=${process.env.REACT_APP_API_OPENWEATHERMAP}&units=metric&lang=en`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.daily);
+        setHourly(data.hourly.slice(0, 7));
+      })
+      .then(() => setLoading(false));
+  }, []);
 
   const values = {
     loc,

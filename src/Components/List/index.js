@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import LocContext from "../../Context/LocationProvider";
 
-export default function List() {
+function List() {
   const { loading, data, hourly, city, country } = useContext(LocContext);
   var ourDate = new Date();
   var Days = [
@@ -36,7 +36,7 @@ export default function List() {
         {hourly.map((hours, index) => (
           <div key={index + 1} className="grid text-center">
             <span className="font-bold">
-              {index == 0 ? "Now" : ourDate.getHours() + index}
+              {index === 0 ? "Now" : ourDate.getHours() + index}
             </span>
             <span>{loading ? "..." : Math.round(hours.temp) + "°"}</span>
           </div>
@@ -49,7 +49,7 @@ export default function List() {
         {data.map((days, index) => (
           <div key={index + 1} className="box">
             <span className="w-1/2">
-              {index == 0 ? "Today" : Days[ourDate.getDay() + index]}
+              {index === 0 ? "Today" : Days[ourDate.getDay() + index]}
             </span>
             <span className="w-1/2">
               {loading
@@ -65,3 +65,5 @@ export default function List() {
     </>
   );
 }
+
+export default List;
