@@ -42,25 +42,41 @@ function List() {
           </div>
         ))}
       </section>
-      <section className="grid my-4 grid-cols-1 md:grid-cols-2 border rounded-xl px-4 md:p-0 md:border-none md:gap-4 shadow-md">
+      <section className="grid my-4 grid-cols-1 md:grid-cols-2 border rounded-xl px-4 md:p-0 md:border-none md:gap-4 shadow-md md:shadow-none">
         <div className="box text-opacity-50 text-sm md:hidden">
           8-DAY FORECAST
         </div>
-        {data.map((days, index) => (
-          <div key={index + 1} className="box">
-            <span className="w-1/2">
-              {index === 0 ? "Today" : Days[ourDate.getDay() + index]}
-            </span>
-            <span className="w-1/2">
-              {loading
-                ? "Loading.."
-                : Math.round(days.temp.min) +
-                  "° - " +
-                  Math.round(days.temp.max) +
-                  "°"}
-            </span>
-          </div>
-        ))}
+        {data.map((days, index) =>
+          index === 7 ? (
+            <div key={index + 1} className="box !border-b-0 md:!border">
+              <span className="w-1/2">
+                {index === 0 ? "Today" : Days[ourDate.getDay() + index]}
+              </span>
+              <span className="w-1/2">
+                {loading
+                  ? "Loading.."
+                  : Math.round(days.temp.min) +
+                    "° - " +
+                    Math.round(days.temp.max) +
+                    "°"}
+              </span>
+            </div>
+          ) : (
+            <div key={index + 1} className="box">
+              <span className="w-1/2">
+                {index === 0 ? "Today" : Days[ourDate.getDay() + index]}
+              </span>
+              <span className="w-1/2">
+                {loading
+                  ? "Loading.."
+                  : Math.round(days.temp.min) +
+                    "° - " +
+                    Math.round(days.temp.max) +
+                    "°"}
+              </span>
+            </div>
+          )
+        )}
       </section>
     </>
   );
