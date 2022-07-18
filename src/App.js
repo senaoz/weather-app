@@ -5,9 +5,7 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { useState } from "react";
 
 function App() {
-  const [isDarkMode, setDarkMode] = useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
+  const [isDarkMode, setDarkMode] = useState(true);
 
   if (
     localStorage.theme === "dark" ||
