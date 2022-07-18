@@ -79,7 +79,7 @@ function List() {
                 {index === 0 ? "Today" : Days[ourDate.getDay() + index]}
               </span>
               <WeatherIcon iconId={days.weather[0].id} name="owm" />
-              <span className=" ">
+              <span className="w-1/2">
                 {loading
                   ? "Loading.."
                   : Math.round(days.temp.min) +
