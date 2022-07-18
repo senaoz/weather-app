@@ -20,6 +20,6 @@ body {
 }
 
 .box{
-    @apply p-2 flex border-b md:border
-    md:shadow-md md:p-10 md:rounded-xl md:text-center;
+    @apply p-2 flex border-b items-center
+    md:border md:shadow-md md:p-10 md:rounded-xl md:text-center;
 }
