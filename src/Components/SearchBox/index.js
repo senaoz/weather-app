@@ -4,24 +4,31 @@ import LocContext from "../../Context/LocationProvider";
 
 export default function SearchBox() {
   const [form, setForm] = useState(" ");
-  const { setLoc, setCity, setCountry } = useContext(LocContext);
+  const { loc, setLoc, setCity, setCountry, setData, setHourly, setLoading } =
+    useContext(LocContext);
 
   useEffect(() => {
     axios
       .get(
         `https://api.openweathermap.org/geo/1.0/direct?q=${
-          form.length !== 0 ? form : " "
+          form.length !== 0 ? form : ""
         }&limit=1&appid=${process.env.REACT_APP_API_OPENWEATHERMAP}`
       )
       .then((city) => {
-        axios(
-          `https://api.openweathermap.org/data/2.5/onecall?lat=${city.data[0].lat}&lon=${city.data[0].lon}&lang=tr&units=metric&exclude=minutely,hourly,alerts&appid=${process.env.REACT_APP_API_OPENWEATHERMAP}`
-        ).catch((err) => null);
         setCity(city.data[0].name);
         setCountry(city.data[0].country);
         setLoc("lat=" + city.data[0].lat + "&lon=" + city.data[0].lon);
       })
-      .catch((err) => null);
+      .then(() => {
+        fetch(
+          `https://api.openweathermap.org/data/2.5/onecall?${loc}&exclude=current,minutely,alerts&appid=${process.env.REACT_APP_API_OPENWEATHERMAP}&units=metric&lang=en`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setData(data.daily);
+            setHourly(data.hourly.slice(0, 7));
+          });
+      });
   }, [form]);
 
   const onSubmit = (event) => {

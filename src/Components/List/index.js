@@ -1,8 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import LocContext from "../../Context/LocationProvider";
+import "weather-react-icons/lib/css/weather-icons.css";
+import { WeatherIcon } from "weather-react-icons";
 
 function List() {
   const { loading, data, hourly, city, country } = useContext(LocContext);
+
+  useEffect(() => {
+    console.log(city);
+  }, [city]);
+
   var ourDate = new Date();
   var Days = [
     "Sunday",
@@ -20,6 +27,7 @@ function List() {
     "Friday",
     "Saturday",
   ];
+
   return (
     <>
       <h1 className="mb-2 mt-14 text-center">
@@ -34,11 +42,14 @@ function List() {
 
       <section className="grid my-4 grid-cols-7 border rounded-xl p-4 shadow-md">
         {hourly.map((hours, index) => (
-          <div key={index + 1} className="grid text-center">
+          <div key={index + 1} className="grid text-center gap-2">
             <span className="font-bold">
               {index === 0 ? "Now" : ourDate.getHours() + index}
             </span>
-            <span>{loading ? "..." : Math.round(hours.temp) + "°"}</span>
+            <WeatherIcon iconId={hours.weather[0].id} name="owm" />
+            <span className="pt-1">
+              {loading ? "..." : Math.round(hours.temp) + "°"}{" "}
+            </span>
           </div>
         ))}
       </section>
@@ -52,6 +63,7 @@ function List() {
               <span className="w-1/2">
                 {index === 0 ? "Today" : Days[ourDate.getDay() + index]}
               </span>
+              <WeatherIcon iconId={days.weather[0].id} name="owm" />
               <span className="w-1/2">
                 {loading
                   ? "Loading.."
@@ -66,7 +78,8 @@ function List() {
               <span className="w-1/2">
                 {index === 0 ? "Today" : Days[ourDate.getDay() + index]}
               </span>
-              <span className="w-1/2">
+              <WeatherIcon iconId={days.weather[0].id} name="owm" />
+              <span className=" ">
                 {loading
                   ? "Loading.."
                   : Math.round(days.temp.min) +

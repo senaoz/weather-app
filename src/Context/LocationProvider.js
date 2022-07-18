@@ -22,10 +22,13 @@ export const LocProvider = ({ children }) => {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
+      })
+      .then((data) => (data.cod === 429 ? setLoading(true) : setLoading(false)))
+      .then((data) => {
         setData(data.daily);
         setHourly(data.hourly.slice(0, 7));
-      })
-      .then(() => setLoading(false));
+      });
   }, []);
 
   const values = {
