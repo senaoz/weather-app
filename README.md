@@ -1,8 +1,6 @@
 # Weather App
 This project has responsive design and dark mode support.
 
-📌 <a href='https://weather-app-senaoz.vercel.app/'>Demo</a>
-
 ## Built with
 * ReactJs
 * Tailwind CSS
