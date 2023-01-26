@@ -1,6 +1,6 @@
 # [Weather App](https://weather-app-senaoz.vercel.app)
 
-A weather app built with **ReactJs, Tailwind CSS, OpenWeatherMap API**, and the **Context API**.
+This is a weather app built with React and Tailwind CSS that uses the OpenWeatherMap API to get weather data for the user's current location or a searched city. It has a responsive design and dark mode support. 
 
 ## Getting started
 
