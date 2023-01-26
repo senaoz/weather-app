@@ -2,14 +2,6 @@
 
 This is a weather app built with React and Tailwind CSS that uses the OpenWeatherMap API to get weather data for the user's current location or a searched city. It has a responsive design and dark mode support. 
 
-## Getting started
-
-- Clone the repository
-- Run `npm install` to install the dependencies
-- Create a file called **.env** in the root of the project's directory
-- Inside the **.env** file, prepend `REACT_APP_API_OPENWEATHERMAP` to your API key name of choice and assign it.
-- Run `npm start` to start the development server
-
 ## Features
 
 - Responsive design
@@ -26,6 +18,14 @@ This is a weather app built with React and Tailwind CSS that uses the OpenWeathe
 <img width='70%' alt="Screen Shot 2022-08-02 at 12 41 56" src="https://user-images.githubusercontent.com/66164676/182344541-c1ae6b87-11f0-489c-83d3-26025e9f8f54.png">
 </div>
 
+
+## Getting started
+
+- Clone the repository
+- Run `npm install` to install the dependencies
+- Create a file called **.env** in the root of the project's directory
+- Inside the **.env** file, prepend `REACT_APP_API_OPENWEATHERMAP` to your API key name of choice and assign it.
+- Run `npm start` to start the development server
 
 ### Note
 To get an API key, register on the OpenWeatherMap website.
